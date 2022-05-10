@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { GrMenu, GrClose } from 'react-icons/gr';
+
+// Redux
+import { useDispatch } from 'react-redux';
+import { reset } from '../features/auth/authSlice';
 
 // logo
 import Logo from './Logo';
 
 function Navbar() {
   const [menuState, setMenuState] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const openMenu = () => setMenuState((prevState) => !prevState);
 
@@ -19,6 +25,11 @@ function Navbar() {
     right: 25,
     background: 'white',
     borderRadius: '5px',
+  };
+
+  const logout = () => {
+    dispatch(reset());
+    navigate('/');
   };
 
   return (
@@ -54,8 +65,8 @@ function Navbar() {
             Register
           </Link>
         </li>
-        <li>
-          <Link to='community' onClick={openMenu}>
+        <li onClick={logout}>
+          <Link to='..' onClick={openMenu}>
             Logout
           </Link>
         </li>

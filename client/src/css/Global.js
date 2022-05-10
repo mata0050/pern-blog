@@ -4,6 +4,7 @@ export const Container = styled.div`
   position: absolute;
   top: 80px;
   padding: 60px;
+  width: 100%;
 
   @media only screen and (max-width: ${({ theme }) => theme.mobile.medium}) {
     top: 70px;

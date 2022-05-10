@@ -53,13 +53,14 @@ const loginUser = asyncHandler(async (req, res) => {
     },
   };
 
+
   jwt.sign(
     payload,
     process.env.JWT_SECRET,
     { expiresIn: '5 days' },
     (err, token) => {
       if (err) throw err;
-      res.json({ token, user });
+      res.json({ token, user: user[0] });
     }
   );
 });
