@@ -82,7 +82,7 @@ const StyledNavbar = styled.header`
   left: 0;
   height: 50px;
   z-index: 2;
-  background-color: ${({ theme }) => theme.colors.black};
+  background-color: ${({ theme }) => theme.colors.blue};
   width: 100%;
   padding-left: 20px;
 

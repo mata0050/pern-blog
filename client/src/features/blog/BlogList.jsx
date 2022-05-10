@@ -1,33 +1,21 @@
-import React, { useEffect } from 'react';
-import styled from 'styled-components';
+import React from 'react';
+
 import { useSelector } from 'react-redux';
 import { useGetAllBlogQuery, selectBlogIds } from './blogSlice';
 import Blog from './Blog';
 
 function BlogList() {
-  const { isLoading, isSuccess, isError, error, refetch } =
-    useGetAllBlogQuery();
-
+  const { isLoading, isSuccess } = useGetAllBlogQuery();
   const orderedBlogIds = useSelector(selectBlogIds);
 
-  // console.log(orderedBlogIds);
+  return (
+    <>
+      {isLoading && <p>loading....</p>}
 
-  // useEffect(() => {
-  //   refetch()
-  // },[])
-
-  let content;
-  if (isLoading) {
-    content = <p>"Loading..."</p>;
-  } else if (isSuccess) {
-    content = orderedBlogIds.map((blogId) => (
-      <Blog key={blogId} blogId={blogId} />
-    ));
-  } else if (isError) {
-    content = <p>{error}</p>;
-  }
-
-  return <div>{content}</div>;
+      {isSuccess &&
+        orderedBlogIds.map((blogId) => <Blog key={blogId} blogId={blogId} />)}
+    </>
+  );
 }
 
 export default BlogList;
