@@ -4,6 +4,9 @@
   "private": true,
   "proxy": "http://localhost:3001",
   "dependencies": {
+    "@mantine/core": "^4.2.4",
+    "@mantine/hooks": "^4.2.4",
+    "@mantine/rte": "^4.2.4",
     "@reduxjs/toolkit": "^1.8.1",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",

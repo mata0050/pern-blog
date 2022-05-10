@@ -8,11 +8,11 @@ export const apiSlice = createApi({
       // By default, if we have a token in the store, let's use that for authenticated requests
       const token = JSON.parse(localStorage.getItem('user') || null);
       if (token) {
-        headers.set('x-auth-token', token);
+        headers.set('x-auth-token', token.token);
       }
       return headers;
     },
   }),
-  tagTypes: ['Auth'],
+  tagTypes: ['Auth', 'Blog'],
   endpoints: (builder) => ({}),
 });

@@ -51,7 +51,7 @@ function Navbar() {
           </Link>
         </li>
         <li>
-          <Link to='create' onClick={openMenu}>
+          <Link to='create-blog' onClick={openMenu}>
             Create Blog
           </Link>
         </li>

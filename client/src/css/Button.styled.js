@@ -8,6 +8,7 @@ export const Button = styled.button`
   color: ${({ theme }) => theme.colors.white};
   cursor: pointer;
   background-color: ${({ theme }) => theme.colors.darkBlue};
+  max-height: 45px;
 
   &:hover {
     opacity: 0.9;
