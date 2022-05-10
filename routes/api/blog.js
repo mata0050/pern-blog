@@ -15,7 +15,7 @@ const {
 // @route    GET /api/blog
 // @desc     GET all the blogs
 // @access   Public
-router.get('/', auth, getAllBlogs);
+router.get('/', getAllBlogs);
 
 // @route    POST /api/blog
 // @desc     POST Create a blog
