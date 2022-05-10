@@ -12,15 +12,17 @@ const initialValue =
   '<p>Your initial <b>html value</b> or an empty string to init editor without value</p>';
 
 function CreateBlog() {
+  const navigate = useNavigate();
   const { user } = useSelector(selectCurrentUser);
   const [addNewBlog, { isLoading }] = useAddBlogMutation();
   const [value, onChange] = useState(initialValue);
 
-  console.log(user);
-
   const onSave = async () => {
     try {
       await addNewBlog({ author_id: user.id, blog: value }).unwrap();
+      if (!isLoading) {
+        navigate('/');
+      }
     } catch (error) {
       console.error('Failed to save the post', error);
     }

@@ -11,6 +11,7 @@ import Navbar from './components/Navbar';
 import Login from './features/auth/Login';
 import Register from './features/auth/Register';
 import CreateBlog from './features/blog/CreateBlog';
+import BlogList from './features/blog/BlogList';
 
 const theme = {
   colors: {
@@ -40,7 +41,7 @@ function App() {
         <h1>hello</h1>
         <Container>
           <Routes>
-            <Route path='/' element={<h1>Hello</h1>} />
+            <Route path='/' element={<BlogList />} />
             <Route path='login' element={<Login />} />
             <Route path='register' element={<Register />} />
             <Route path='create-blog' element={<CreateBlog />} />
