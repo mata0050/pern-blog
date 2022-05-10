@@ -10,4 +10,5 @@ const pool = require('../../config/db');
 router.get('/', auth, getProfile);
 router.post('/', loginUser);
 
+
 module.exports = router;

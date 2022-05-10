@@ -12,6 +12,7 @@ app.use(morgan('tiny'))
 // ROUTES
 app.use('/auth', require('./routes/auth/auth'));
 app.use('/auth/register', require('./routes/auth/register'));
+app.use('/api/blog', require('./routes/api/blog'));
 
 
 // Serve static assets in production
