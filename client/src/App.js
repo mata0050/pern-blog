@@ -6,6 +6,7 @@ import { Routes, Route } from 'react-router-dom';
 // CSS
 import GlobalStyles, { Container } from './css/Global';
 import Navbar from './components/Navbar';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Components
 import Login from './features/auth/Login';
@@ -21,6 +22,7 @@ const theme = {
     blue: '#228BE6',
     grey: '#25262B',
     lightGrey: '#85878B',
+    red: 'red',
   },
 
   mobile: {
@@ -33,12 +35,11 @@ const theme = {
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <ToastContainer />
-      <GlobalStyles />
-      <Navbar />
-      <div className='App'>
-        <h1>hello</h1>
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        <Navbar />
         <Container>
           <Routes>
             <Route path='/' element={<BlogList />} />
@@ -48,8 +49,8 @@ function App() {
             <Route path='*' element={<p>There's nothing here: 404!</p>} />
           </Routes>
         </Container>
-      </div>
-    </ThemeProvider>
+      </ThemeProvider>
+    </>
   );
 }
 

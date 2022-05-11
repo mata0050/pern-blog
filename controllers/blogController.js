@@ -57,6 +57,13 @@ const updateBlog = asyncHandler(async (req, res) => {
 const deleteBlog = asyncHandler(async (req, res) => {
   const { id } = req.params;
 
+  const checkIfExists = await pool.query('SELECT * from blog WHERE id = $1', [
+    id,
+  ]);
+  if (checkIfExists.rows.length === 0) {
+    res.status(400);
+    throw new Error('Error deleting, Please try again');
+  }
   await pool.query('DELETE FROM blog WHERE id = $1', [id]);
 
   res.json({ msg: 'Delete was successful' });

@@ -38,9 +38,8 @@ export const cohortApiSlice = apiSlice.injectEndpoints({
     }),
     deleteBlog: builder.mutation({
       query: (formData) => ({
-        url: API_URL,
+        url: API_URL + formData.id,
         method: 'DELETE',
-        body: formData,
       }),
       invalidatesTags: (result, error, arg) => [{ type: 'Blog', id: arg.id }],
     }),

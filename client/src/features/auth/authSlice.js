@@ -8,14 +8,16 @@ const slice = createSlice({
   name: 'auth',
   initialState: {
     user: user ? user : null,
+    userProfile: user ? user.user : null,
   },
   reducers: {
     setCredentials: (state, { payload }) => {
-      console.log(payload);
       state.user = payload;
+      state.userProfile = payload.user;
     },
     reset: (state) => {
       state.user = null;
+      state.userProfile = null;
       localStorage.removeItem('user');
     },
   },
@@ -56,4 +58,4 @@ export const { setCredentials, reset } = slice.actions;
 
 export default slice.reducer;
 
-export const selectCurrentUser = (state) => state.auth.user;
+export const selectCurrentUser = (state) => state.auth.userProfile;
