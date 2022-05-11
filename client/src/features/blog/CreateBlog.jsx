@@ -17,7 +17,7 @@ const initialValue =
 
 function CreateBlog() {
   const navigate = useNavigate();
-  const { user } = useSelector(selectCurrentUser);
+  const user = useSelector(selectCurrentUser);
   const [addNewBlog, { isLoading }] = useAddBlogMutation();
   const [value, onChange] = useState(initialValue);
 

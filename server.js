@@ -1,5 +1,4 @@
 const express = require('express');
-const path = require('path');
 const morgan = require('morgan');
 const { errorHandler } = require('./middleware/errorMiddleware');
 const app = express();
@@ -15,15 +14,7 @@ app.use('/auth/register', require('./routes/auth/register'));
 app.use('/api/blog', require('./routes/api/blog'));
 
 
-// Serve static assets in production
-if (process.env.NPM_CONFIG_PRODUCTION) {
-  // Set static folder
-  app.use(express.static('client/build'));
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-  });
-}
 
 app.use(errorHandler);
 

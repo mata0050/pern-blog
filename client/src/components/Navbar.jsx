@@ -69,11 +69,14 @@ function Navbar() {
             Register
           </Link>
         </li>
-        <li onClick={logout}>
-          <Link to='..' onClick={openMenu}>
-            Logout
-          </Link>
-        </li>
+
+        {user && (
+          <li onClick={logout}>
+            <Link to='..' onClick={openMenu}>
+              Logout
+            </Link>
+          </li>
+        )}
       </ul>
     </StyledNavbar>
   );
