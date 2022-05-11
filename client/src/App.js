@@ -14,6 +14,7 @@ import Register from './features/auth/Register';
 import CreateBlog from './features/blog/CreateBlog';
 import BlogList from './features/blog/BlogList';
 import EditBlog from './features/blog/EditBlog';
+import PrivateRoute from './components/PrivateRoute';
 
 const theme = {
   colors: {
@@ -46,8 +47,23 @@ function App() {
             <Route path='/' element={<BlogList />} />
             <Route path='login' element={<Login />} />
             <Route path='register' element={<Register />} />
-            <Route path='create-blog' element={<CreateBlog />} />
-            <Route path='edit-blog/:id' element={<EditBlog />} />
+
+            <Route
+              path='create-blog'
+              element={
+                <PrivateRoute>
+                  <CreateBlog />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path='edit-blog/:id'
+              element={
+                <PrivateRoute>
+                  <EditBlog />
+                </PrivateRoute>
+              }
+            />
             <Route path='*' element={<p>There's nothing here: 404!</p>} />
           </Routes>
         </Container>

@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import { GrMenu, GrClose } from 'react-icons/gr';
 
 // Redux
-import { useDispatch } from 'react-redux';
-import { reset } from '../features/auth/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { reset, selectCurrentUser } from '../features/auth/authSlice';
 
 // logo
 import Logo from './Logo';
@@ -14,7 +14,7 @@ function Navbar() {
   const [menuState, setMenuState] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const user = useSelector(selectCurrentUser);
   const openMenu = () => setMenuState((prevState) => !prevState);
 
   const menuIconStyle = {
@@ -50,11 +50,15 @@ function Navbar() {
             Home
           </Link>
         </li>
-        <li>
-          <Link to='create-blog' onClick={openMenu}>
-            Create Blog
-          </Link>
-        </li>
+
+        {user && (
+          <li>
+            <Link to='create-blog' onClick={openMenu}>
+              Create Blog
+            </Link>
+          </li>
+        )}
+
         <li>
           <Link to='login' onClick={openMenu}>
             Login
@@ -82,7 +86,7 @@ const StyledNavbar = styled.header`
   left: 0;
   height: 50px;
   z-index: 2;
-  background-color: ${({ theme }) => theme.colors.blue};
+  background-color: ${({ theme }) => theme.colors.darkBlue};
   width: 100%;
   padding-left: 20px;
 

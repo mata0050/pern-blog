@@ -11,6 +11,7 @@ function Logo() {
     padding: ' 2px',
     marginRight: ' 10px',
     fontSize: '2rem',
+    color: 'black',
   };
   return (
     <StyledLogo>
