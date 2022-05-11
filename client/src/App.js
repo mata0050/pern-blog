@@ -13,6 +13,7 @@ import Login from './features/auth/Login';
 import Register from './features/auth/Register';
 import CreateBlog from './features/blog/CreateBlog';
 import BlogList from './features/blog/BlogList';
+import EditBlog from './features/blog/EditBlog';
 
 const theme = {
   colors: {
@@ -46,6 +47,7 @@ function App() {
             <Route path='login' element={<Login />} />
             <Route path='register' element={<Register />} />
             <Route path='create-blog' element={<CreateBlog />} />
+            <Route path='edit-blog/:id' element={<EditBlog />} />
             <Route path='*' element={<p>There's nothing here: 404!</p>} />
           </Routes>
         </Container>

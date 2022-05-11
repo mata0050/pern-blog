@@ -1,8 +1,8 @@
 import React from 'react';
+import Blog from './Blog';
 
 import { useSelector } from 'react-redux';
 import { useGetAllBlogQuery, selectBlogIds } from './blogSlice';
-import Blog from './Blog';
 
 function BlogList() {
   const { isLoading, isSuccess } = useGetAllBlogQuery();

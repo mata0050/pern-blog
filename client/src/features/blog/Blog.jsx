@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import parse from 'html-react-parser';
+import { Button } from '../../css/Button.styled';
+import DeleteAlert from '../../components/DeleteAlert';
+import { AiFillDelete } from 'react-icons/ai';
+import { MdOutlineEdit } from 'react-icons/md';
+
 import { useSelector } from 'react-redux';
 import { selectBlogById, useDeleteBlogMutation } from './blogSlice';
 import { selectCurrentUser } from '../auth/authSlice';
-import parse from 'html-react-parser';
-import { AiFillDelete } from 'react-icons/ai';
-import { Button } from '../../css/Button.styled';
-import DeleteAlert from '../../components/DeleteAlert';
-import { toast } from 'react-toastify';
 
 function Blog({ blogId }) {
+  const navigate = useNavigate();
   const blog = useSelector((state) => selectBlogById(state, blogId));
   const user = useSelector(selectCurrentUser);
   const [readBlog, setReadBlog] = useState({});
@@ -33,13 +37,17 @@ function Blog({ blogId }) {
     hideDeleteMsg();
   };
 
+  const editBlog = () => navigate(`/edit-blog/${blogId}`);
   return (
     <>
       <StyledBlog
         style={readBlog[blog.id] ? { minHeight: '150px' } : { height: '150px' }}
       >
         {user !== null && user.id === blog.author_id && (
-          <StyledDelete onClick={hideDeleteMsg} />
+          <>
+            <StyledEdit onClick={editBlog} />
+            <StyledDelete onClick={hideDeleteMsg} />
+          </>
         )}
 
         {parse(blog.blog)}
@@ -58,10 +66,22 @@ function Blog({ blogId }) {
   );
 }
 
+const StyledEdit = styled(MdOutlineEdit)`
+  position: absolute;
+  right: 80px;
+  font-size: 1.6rem;
+  color: ${({ theme }) => theme.colors.black};
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.7;
+  }
+`;
+
 const StyledDelete = styled(AiFillDelete)`
   position: absolute;
   right: 20px;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   color: ${({ theme }) => theme.colors.red};
   cursor: pointer;
 

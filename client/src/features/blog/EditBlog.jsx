@@ -1,26 +1,23 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { RichTextEditor } from '@mantine/rte';
 import { Button } from '../../css/Button.styled';
 import StyledHeader from './StyledHeader';
 import { toast } from 'react-toastify';
 
 import { useSelector } from 'react-redux';
-import { selectCurrentUser } from '../auth/authSlice';
-import { useAddBlogMutation } from './blogSlice';
-import { useNavigate } from 'react-router-dom';
+import { useUpdateBlogMutation, selectBlogById } from './blogSlice';
 
-const initialValue =
-  '<p> <b>Welcome</b> Build your first Blog with Express, Postgres, React and Redux toolkit Query</p>';
-
-function CreateBlog() {
+function EditBlog() {
+  const { id } = useParams();
   const navigate = useNavigate();
-  const { user } = useSelector(selectCurrentUser);
-  const [addNewBlog, { isLoading }] = useAddBlogMutation();
-  const [value, onChange] = useState(initialValue);
+  const [updateBlog, { isLoading }] = useUpdateBlogMutation();
+  const blog = useSelector((state) => selectBlogById(state, Number(id)));
+  const [value, onChange] = useState(blog?.blog);
 
   const onSave = async () => {
     try {
-      await addNewBlog({ author_id: user.id, blog: value }).unwrap();
+      await updateBlog({ id: blog.id, blog: value }).unwrap();
       if (!isLoading) {
         navigate('/');
       }
@@ -28,10 +25,15 @@ function CreateBlog() {
       toast.error('Failed to save the blog');
     }
   };
+
+  useEffect(() => {
+    if (!blog) navigate('/');
+  }, [blog, navigate]);
+
   return (
     <>
       <StyledHeader>
-        <h1>Create a new blog</h1>
+        <h1>Edit Blog</h1>
         <Button onClick={() => onSave()}>save</Button>
       </StyledHeader>
 
@@ -44,4 +46,4 @@ function CreateBlog() {
   );
 }
 
-export default CreateBlog;
+export default EditBlog;
