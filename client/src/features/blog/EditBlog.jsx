@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { RichTextEditor } from '@mantine/rte';
-import { Button } from '../../css/Button.styled';
-import StyledHeader from './StyledHeader';
 import { toast } from 'react-toastify';
 
+// Styles
+import { Button } from '../../css/Button.styled';
+import StyledHeader from './StyledHeader';
+
+// Redux
 import { useSelector } from 'react-redux';
 import { useUpdateBlogMutation, selectBlogById } from './blogSlice';
 

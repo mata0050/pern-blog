@@ -2,6 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
+// Styles
+import { Button } from '../../css/Button.styled';
+import { Form, CenterWrapper } from './StyledAuth';
+import { Input } from '../../css/StyledInput';
+
 // Redux
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -9,10 +14,6 @@ import {
   useLoginMutation,
 } from '../../features/auth/authSlice';
 
-// Styles
-import { Button } from '../../css/Button.styled';
-import { Form, CenterWrapper } from './StyledAuth';
-import { Input } from '../../css/StyledInput';
 
 function Login() {
   const dispatch = useDispatch();

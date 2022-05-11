@@ -1,6 +1,9 @@
 import React from 'react';
+
+// Components
 import Blog from './Blog';
 
+// Redux
 import { useSelector } from 'react-redux';
 import { useGetAllBlogQuery, selectBlogIds } from './blogSlice';
 

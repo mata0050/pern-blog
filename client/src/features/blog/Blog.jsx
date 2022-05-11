@@ -3,11 +3,14 @@ import styled from 'styled-components';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import parse from 'html-react-parser';
-import { Button } from '../../css/Button.styled';
-import DeleteAlert from '../../components/DeleteAlert';
 import { AiFillDelete } from 'react-icons/ai';
 import { MdOutlineEdit } from 'react-icons/md';
 
+// Styles & Components
+import { Button } from '../../css/Button.styled';
+import DeleteAlert from '../../components/DeleteAlert';
+
+// Redux
 import { useSelector } from 'react-redux';
 import { selectBlogById, useDeleteBlogMutation } from './blogSlice';
 import { selectCurrentUser } from '../auth/authSlice';
