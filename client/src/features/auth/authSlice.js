@@ -25,13 +25,6 @@ const slice = createSlice({
 
 export const apiAuth = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    loadUser: builder.query({
-      query: () => ({
-        url: 'auth/',
-        method: 'GET',
-        providesTags: ['Auth'],
-      }),
-    }),
     login: builder.mutation({
       query: (credentials) => ({
         url: 'auth/',
@@ -51,7 +44,7 @@ export const apiAuth = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useLoadUserQuery, useLoginMutation, useRegisterMutation } =
+export const {useLoginMutation, useRegisterMutation } =
   apiAuth;
 
 export const { setCredentials, reset } = slice.actions;
